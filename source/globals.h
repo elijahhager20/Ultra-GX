@@ -21,10 +21,10 @@ const f32 UGX_BLUE_F32[3] = {0.0f, 0.0f, 1.0f};
 const f32 UGX_WHITE_F32[3] = {1.0f, 1.0f, 1.0f};
 const f32 UGX_BLACK_F32[3] = {0.0f, 0.0f, 0.0f};
 
-typedef union {
-    struct {
-        union {
-            struct {
+typedef union{
+    struct{
+        union{
+            struct{
                 u8 r;
                 u8 g;
                 u8 b;
