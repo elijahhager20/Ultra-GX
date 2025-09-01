@@ -2,6 +2,6 @@ source/test.c
 .vscode/
 Makefile
 bin/
-source/goals.txt
+goals.txt
 lib/
 build/
