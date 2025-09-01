@@ -12,10 +12,10 @@ int main(int argc, char* argv[]) {
     f32 x = 100.0f;
     f32 y = 100.0f;
     int width = 20;
-    UGX_colorU8 background = {0, 0, 255};
+    UGX_colorU8 background = {.rgb = {0, 0, 255}};
 
     while (1) {
-        UGX_setCopyClear(background);
+        UGX_setCopyClear(background.rgb);
         UGX_inputScan();
 
         UGX_WPADMovement(&x, &y);
