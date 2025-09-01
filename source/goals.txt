@@ -1,0 +1,3 @@
+Add initilzation control for the draw color (So it isn't always cyan)
+Add a color changing system
+Add some performance optimizations for the video initilzation
