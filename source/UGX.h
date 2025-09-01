@@ -88,7 +88,7 @@ int UGX_WPADMovement(f32* x, f32* y){
 }
 
 // Input Checking (Raw input, no specialty things like UGX_WPADMovement())
-
+// Literally just a wrapper for WiiUse, lmao
 int UGX_inputScan(){
     WPAD_ScanPads();
     UGX_buttonsHeld = WPAD_ButtonsHeld(0);
@@ -96,46 +96,57 @@ int UGX_inputScan(){
     return SUCCESS;
 }
 
+// Home button
 int UGX_WPAD_home(){
     return (UGX_buttonsDown & WPAD_BUTTON_HOME) ? UGX_TRUE : UGX_FALSE;
 }
 
+// Right button
 int UGX_WPAD_right(){
     return (UGX_buttonsDown & WPAD_BUTTON_RIGHT) ? UGX_TRUE : UGX_FALSE;
 }
 
+// Left button
 int UGX_WPAD_left(){
     return (UGX_buttonsDown & WPAD_BUTTON_LEFT) ? UGX_TRUE : UGX_FALSE;
 }
 
+// Up button
 int UGX_WPAD_up(){
     return (UGX_buttonsDown & WPAD_BUTTON_UP) ? UGX_TRUE : UGX_FALSE;
 }
 
+// Down button
 int UGX_WPAD_down(){
     return (UGX_buttonsDown & WPAD_BUTTON_DOWN) ? UGX_TRUE : UGX_FALSE;
 }
 
+// B button
 int UGX_WPAD_b(){
     return (UGX_buttonsDown & WPAD_BUTTON_B) ? UGX_TRUE : UGX_FALSE;
 }
 
+// A button
 int UGX_WPAD_a(){
     return (UGX_buttonsDown & WPAD_BUTTON_A) ? UGX_TRUE : UGX_FALSE;
 }
 
+// Minus button
 int UGX_WPAD_minus(){
     return (UGX_buttonsDown & WPAD_BUTTON_MINUS) ? UGX_TRUE : UGX_FALSE;
 }
 
+// Plus button
 int UGX_WPAD_plus(){
     return (UGX_buttonsDown & WPAD_BUTTON_PLUS) ? UGX_TRUE : UGX_FALSE;
 }
 
+// One button
 int UGX_WPAD_one(){
     return (UGX_buttonsDown & WPAD_BUTTON_1) ? UGX_TRUE : UGX_FALSE;
 }
 
+// Two button
 int UGX_WPAD_two(){
     return (UGX_buttonsDown & WPAD_BUTTON_2) ? UGX_TRUE : UGX_FALSE;
 }
