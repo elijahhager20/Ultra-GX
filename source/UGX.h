@@ -40,7 +40,7 @@ int UGX_init(){
     return SUCCESS;
 }
 
-int UGX_drawSquare(f32* x, f32* y, int* width, const f32 color[]){
+int UGX_drawSquare(f32* x, f32* y, int* width, const f32 color[3]){
     GX_Begin(GX_QUADS, GX_VTXFMT0, 4);
         // Top-left
         GX_Position3f32(*x, *y, 0.0f);
@@ -59,7 +59,7 @@ int UGX_drawSquare(f32* x, f32* y, int* width, const f32 color[]){
     return SUCCESS;
 }
 
-int UGX_drawTriangle(f32* left, f32* right, f32* top, int* width, int* height, const f32 color[]){
+int UGX_drawTriangle(f32* left, f32* right, f32* top, int* width, int* height, const f32 color[3]){
     GX_Begin(GX_TRIANGLES, GX_VTXFMT0, 3);
         // Left 
         GX_Position3f32(*left, *top + *height, 0.0f);
@@ -87,7 +87,7 @@ int UGX_refreshFrame(){
 }
 
 // Clear the screen with the color passed in
-int UGX_setCopyClear(const u8 color[]){
+int UGX_setCopyClear(const u8 color[3]){
     GX_SetCopyClear((GXColor){color[0], color[1], color[2], 255}, 0x00FFFFFF);
 
     return SUCCESS;
