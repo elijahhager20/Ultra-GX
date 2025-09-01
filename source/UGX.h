@@ -61,6 +61,7 @@ int UGX_drawTriangle(f32* left, f32* right, f32* top, int* width, int* height){
     return SUCCESS;
 }
 
+// Used at the end of every loop (Usually)
 int UGX_refreshFrame(){
     GX_DrawDone();
     GX_CopyDisp(xfb, GX_TRUE);
@@ -71,6 +72,7 @@ int UGX_refreshFrame(){
     return SUCCESS;
 }
 
+// Clear the screen with the color passed in
 int UGX_setCopyClear(const u8 color[]){
     GX_SetCopyClear((GXColor){color[0], color[1], color[2], 255}, 0x00FFFFFF);
 

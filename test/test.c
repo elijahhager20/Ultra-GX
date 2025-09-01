@@ -15,18 +15,16 @@ int main(int argc, char* argv[]) {
 
     while (1) {
         UGX_setCopyClear(BLACK);
-        
-        // Input checking, changes x and/or y coordinate and closes when home button is pressed
         UGX_inputScan();
+
         UGX_WPADMovement(&x, &y);
         if (UGX_WPAD_home()) break;
-        // Bounds checking
+        
         if (x < 0) x = 0;
         if (x > rmode->xfbHeight - 20) x = rmode->xfbHeight - 20;
         if (y < 0) y = 0;
         if (y > rmode->fbWidth - 20) y = rmode->fbWidth - 20;
 
-        // Refresh the frame buffer and draw to the screen
         UGX_drawSquare(&x, &y, &width);
         UGX_refreshFrame();
     }
