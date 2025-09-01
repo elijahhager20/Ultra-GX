@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
         // Input checking, changes x and/or y coordinate and closes when home button is pressed
         UGX_inputScan();
         UGX_WPADMovement(&x, &y);
-        if (UGX_WPAD_home() == UGX_TRUE) break;
+        if (UGX_WPAD_home()) break;
         // Bounds checking
         if (x < 0) x = 0;
         if (x > rmode->xfbHeight - 20) x = rmode->xfbHeight - 20;
