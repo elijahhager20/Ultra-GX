@@ -1,4 +1,5 @@
 // For macros and variables that need to be public throughout all function scopes
+
 #pragma once
 
 #define DEFAULT_FIFO_SIZE (256 * 1024)
@@ -20,6 +21,8 @@ const f32 UGX_GREEN_F32[3] = {0.0f, 1.0f, 0.0f};
 const f32 UGX_BLUE_F32[3] = {0.0f, 0.0f, 1.0f};
 const f32 UGX_WHITE_F32[3] = {1.0f, 1.0f, 1.0f};
 const f32 UGX_BLACK_F32[3] = {0.0f, 0.0f, 0.0f};
+
+typedef u8 UGX_colorU8[3];
 
 // Video variables
 GXRModeObj* rmode;
