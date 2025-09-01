@@ -62,7 +62,6 @@ int UGX_drawTriangle(f32* left, f32* right, f32* top, int* width, int* height){
 }
 
 int UGX_refreshFrame(){
-    GX_SetCopyClear((GXColor){0, 0, 0, 255}, 0x00FFFFFF);
     GX_DrawDone();
     GX_CopyDisp(xfb, GX_TRUE);
     VIDEO_SetNextFramebuffer(xfb);
@@ -72,6 +71,13 @@ int UGX_refreshFrame(){
     return SUCCESS;
 }
 
+int UGX_setCopyClear(const u8 color[]){
+    GX_SetCopyClear((GXColor){color[0], color[1], color[2], 255}, 0x00FFFFFF);
+
+    return SUCCESS;
+}
+
+// Basically WASD movement but for the DPAD
 int UGX_WPADMovement(f32* x, f32* y){
     if (WPAD_ButtonsHeld(0) & WPAD_BUTTON_RIGHT) *x += 5;
     if (WPAD_ButtonsHeld(0) & WPAD_BUTTON_LEFT) *x -= 5;

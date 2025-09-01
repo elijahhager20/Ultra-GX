@@ -14,6 +14,8 @@ int main(int argc, char* argv[]) {
     int width = 20;
 
     while (1) {
+        UGX_setCopyClear(BLACK);
+        
         // Input checking, changes x and/or y coordinate and closes when home button is pressed
         UGX_inputScan();
         UGX_WPADMovement(&x, &y);
