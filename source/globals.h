@@ -9,12 +9,17 @@
 #define UGX_FALSE 0
 #define UGX_TRUE 1
 
-// Colors, declared as u8s for GXColor compatibility
-static const u8 RED[3] = {255, 0 ,0};
-static const u8 GREEN[3] = {0, 255 ,0};
-static const u8 BLUE[3] = {0, 0 ,255};
-static const u8 WHITE[3] = {255, 255, 255};
-static const u8 BLACK[3] = {0, 0, 0};
+// Colors, obviously
+const GXColor UGX_RED_U8 = {255, 0 , 0};
+const GXColor UGX_GREEN_U8 = {0, 255 , 0};
+const GXColor UGX_BLUE_U8 = {0, 0 , 255};
+const GXColor UGX_WHITE_U8 = {255, 255, 255};
+const GXColor UGX_BLACK_U8 = {0, 0, 0};
+const f32 UGX_RED_F32[3] = {1.0f, 0.0f, 0.0f};
+const f32 UGX_GREEN_F32[3] = {0.0f, 1.0f, 0.0f};
+const f32 UGX_BLUE_F32[3] = {0.0f, 0.0f, 1.0f};
+const f32 UGX_WHITE_F32[3] = {1.0f, 1.0f, 1.0f};
+const f32 UGX_BLACK_F32[3] = {0.0f, 0.0f, 0.0f};
 
 // Video variables
 GXRModeObj* rmode;

@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     int width = 20;
 
     while (1) {
-        UGX_setCopyClear(BLACK);
+        UGX_setCopyClear(UGX_GREEN_U8);
         UGX_inputScan();
 
         UGX_WPADMovement(&x, &y);
@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
         if (y < 0) y = 0;
         if (y > rmode->fbWidth - 20) y = rmode->fbWidth - 20;
 
-        UGX_drawSquare(&x, &y, &width);
+        UGX_drawSquare(&x, &y, &width, UGX_RED_F32);
         UGX_refreshFrame();
     }
 

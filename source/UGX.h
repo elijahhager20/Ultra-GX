@@ -28,34 +28,48 @@ int UGX_init(){
     
     // Vertex descriptions and attribute formats
     GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
     GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGB8, 0);
+
+    GX_SetNumChans(1);
+	GX_SetNumTexGens(0);
+	GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORDNULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+	GX_SetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
 
     return SUCCESS;
 }
 
-int UGX_drawSquare(f32* x, f32* y, int* width){
+int UGX_drawSquare(f32* x, f32* y, int* width, const f32 color[]){
     GX_Begin(GX_QUADS, GX_VTXFMT0, 4);
         // Top-left
         GX_Position3f32(*x, *y, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
         // Top-right
         GX_Position3f32(*x + *width, *y, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
         // Bottom-left
         GX_Position3f32(*x + *width, *y + *width, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
         // Bottom-right
         GX_Position3f32(*x, *y + *width, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
     GX_End();
 
     return SUCCESS;
 }
 
-int UGX_drawTriangle(f32* left, f32* right, f32* top, int* width, int* height){
+int UGX_drawTriangle(f32* left, f32* right, f32* top, int* width, int* height, const f32 color[]){
     GX_Begin(GX_TRIANGLES, GX_VTXFMT0, 3);
         // Left 
         GX_Position3f32(*left, *top + *height, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
         // Right 
         GX_Position3f32(*right, *top + *height, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
         // Top 
         GX_Position3f32((*left + *right) / 2.0f, *top, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
     GX_End();
     
     return SUCCESS;
@@ -73,8 +87,8 @@ int UGX_refreshFrame(){
 }
 
 // Clear the screen with the color passed in
-int UGX_setCopyClear(const u8 color[]){
-    GX_SetCopyClear((GXColor){color[0], color[1], color[2], 255}, 0x00FFFFFF);
+int UGX_setCopyClear(const GXColor color){
+    GX_SetCopyClear((GXColor){color.r, color.g, color.b, color.a}, 0x00FFFFFF);
 
     return SUCCESS;
 }
