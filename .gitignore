@@ -1,0 +1,7 @@
+source/test.c
+.vscode/
+Makefile
+bin/
+source/goals.txt
+lib/
+build/
