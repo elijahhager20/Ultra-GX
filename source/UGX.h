@@ -7,7 +7,7 @@
 #include <malloc.h>
 #include "globals.h"
 
-int UGX_videoInit(){
+int UGX_init(){
     // Basic initilization, pretty readable on its own
     VIDEO_Init();
     WPAD_Init();

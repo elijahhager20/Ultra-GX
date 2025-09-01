@@ -7,7 +7,7 @@
 #include "../source/UGX.h"
 
 int main(int argc, char* argv[]) {
-    UGX_videoInit();
+    UGX_init();
     
     f32 x = 100.0f;
     f32 y = 100.0f;
