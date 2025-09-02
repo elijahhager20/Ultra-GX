@@ -12,6 +12,7 @@ int main(int argc, char* argv[]) {
     f32 x = 100.0f;
     f32 y = 100.0f;
     int width = 20;
+    int height = 20;
     UGX_colorU8 background = {.rgb = {0, 0, 255}};
 
     while (1) {
@@ -26,7 +27,7 @@ int main(int argc, char* argv[]) {
         if (y < 0) y = 0;
         if (y > rmode->fbWidth - 20) y = rmode->fbWidth - 20;
 
-        UGX_drawSquare(&x, &y, &width, UGX_RED_F32);
+        UGX_drawSquare(x, y, width, UGX_RED_F32);
         UGX_refreshFrame();
     }
 
