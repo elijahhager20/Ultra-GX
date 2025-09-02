@@ -233,7 +233,7 @@ int UGX_drawEquilateralTriangleRGBA(f32 x, f32 y, width const u8 color[4]){
     return SUCCESS;
 }
 
-int UGX_drawEquilateralTriangleRGBA(f32 x, f32 y, width const f32 color[3]){
+int UGX_drawEquilateralTriangleRGB(f32 x, f32 y, width const f32 color[3]){
     GX_Begin(GX_TRIANGLES, GX_VTXFMT0, 3);
         GX_Position3f32(x, y, 0.0f);
         GX_Color4u8(color[0], color[1], color[2]);
