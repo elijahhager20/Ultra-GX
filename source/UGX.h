@@ -50,6 +50,48 @@ int UGX_init(){
     return SUCCESS;
 }
 
+int UGX_drawPointRGBA(f32 x, f32 y, const u8 color[4]){
+    GX_Begin(GX_POINTS, GX_VTXFMT0, 1);
+        GX_Position3f32(x, y, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
+    GX_End();
+
+    return SUCCESS;
+}
+
+int UGX_drawPointRGB(f32 x, f32 y, const f32 color[3]){
+    GX_Begin(GX_POINTS, GX_VTXFMT0, 1);
+        GX_Position3f32(x, y, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
+    GX_End();
+
+    return SUCCESS;
+}
+
+int UGX_drawLineRGBA(f32 x1, f32 y1, f32 x2, f32 y2, const u8 color[4]){
+    GX_Begin(GX_LINES, GX_VTXFMT0, 2);
+        GX_Position3f32(x1, y1, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
+        
+        GX_Position3f32(x2, y2, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
+    GX_End();
+
+    return SUCCESS;
+}
+
+int UGX_drawLineRGB(f32 x1, f32 y1, f32 x2, f32 y2, const f32 color[3]){
+    GX_Begin(GX_LINES, GX_VTXFMT0, 2);
+        GX_Position3f32(x1, y1, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
+        
+        GX_Position3f32(x2, y2, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
+    GX_End();
+
+    return SUCCESS;
+}
+
 int UGX_drawSquareRGBA(f32 x, f32 y, int width, const u8 color[4]){
     GX_Begin(GX_QUADS, GX_VTXFMT0, 4);
         // Top-left
