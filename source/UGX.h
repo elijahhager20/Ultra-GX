@@ -23,10 +23,6 @@ int UGX_init(){
     gp_fifo = memalign(32, DEFAULT_FIFO_SIZE);
     GX_Init(gp_fifo, DEFAULT_FIFO_SIZE);
     
-    // Projection Matrix
-    guOrtho(ortho, 0, rmode->xfbHeight, 0, rmode->fbWidth, -1, 1);
-    GX_LoadProjectionMtx(ortho, GX_ORTHOGRAPHIC);
-    
     // Vertex descriptions and attribute formats
     GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
     GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
@@ -46,6 +42,19 @@ int UGX_init(){
     GX_SetAlphaUpdate(GX_TRUE);
 
     GX_SetCullMode(GX_CULL_NONE);
+
+    return SUCCESS;
+}
+
+int UGX_drawInit(){
+    guOrtho(ortho, rmode->xfbHeight, 0, 0, rmode->fbWidth, -1, 1);
+    GX_LoadProjectionMtx(ortho, GX_ORTHOGRAPHIC);
+
+    return SUCCESS;
+}
+
+int UGX_consoleInit(){
+    CON_InitEx(rmode, 10, 10, rmode->fbWidth - 20, rmode->xfbHeight - 20);
 
     return SUCCESS;
 }
@@ -97,17 +106,17 @@ int UGX_drawSquareRGBA(f32 x, f32 y, int width, const u8 color[4]){
         // Top-left
         GX_Position3f32(x, y, 0.0f);
         GX_Color4u8(color[0], color[1], color[2], color[3]);
-        
+
         // Top-right
         GX_Position3f32(x + width, y, 0.0f);
         GX_Color4u8(color[0], color[1], color[2], color[3]);
-        
-        // Bottom-left
-        GX_Position3f32(x + width, y + width, 0.0f);
-        GX_Color4u8(color[0], color[1], color[2], color[3]);
-        
+
         // Bottom-right
-        GX_Position3f32(x, y + width, 0.0f);
+        GX_Position3f32(x + width, y - width, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
+
+        // Bottom-left
+        GX_Position3f32(x, y - width, 0.0f);
         GX_Color4u8(color[0], color[1], color[2], color[3]);
     GX_End();
 
@@ -119,53 +128,47 @@ int UGX_drawSquareRGB(f32 x, f32 y, int width, const f32 color[3]){
         // Top-left
         GX_Position3f32(x, y, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
-        
+
         // Top-right
         GX_Position3f32(x + width, y, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
-        
-        // Bottom-left
-        GX_Position3f32(x + width, y + width, 0.0f);
-        GX_Color3f32(color[0], color[1], color[2]);
-        
+
         // Bottom-right
-        GX_Position3f32(x, y + width, 0.0f);
+        GX_Position3f32(x + width, y - width, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
+
+        // Bottom-left
+        GX_Position3f32(x, y - width, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
     GX_End();
 
     return SUCCESS;
 }
 
-int UGX_drawTriangleRGBA(f32 left, f32 right, f32 top, int height, const u8 color[4]){
+int UGX_drawTriangleRGBA(f32 x0, f32 y0, f32 x1, f32 y1, f32 x2, f32 y2, const u8 color[4]){
     GX_Begin(GX_TRIANGLES, GX_VTXFMT0, 3);
-        // Top
-        GX_Position3f32((left + right) / 2.0f, top, 0.0f);
+        GX_Position3f32(x0, y0, 0.0f);
         GX_Color4u8(color[0], color[1], color[2], color[3]);
 
-        // Left
-        GX_Position3f32(left, top + height, 0.0f);
+        GX_Position3f32(x1, y1, 0.0f);
         GX_Color4u8(color[0], color[1], color[2], color[3]);
 
-        // Right
-        GX_Position3f32(right, top + height, 0.0f);
+        GX_Position3f32(x2, y2, 0.0f);
         GX_Color4u8(color[0], color[1], color[2], color[3]);
     GX_End();
 
     return SUCCESS;
 }
 
-int UGX_drawTriangleRGB(f32 left, f32 right, f32 top, int height, const f32 color[3]){
+int UGX_drawTriangleRGB(f32 x0, f32 y0, f32 x1, f32 y1, f32 x2, f32 y2, const f32 color[3]){
     GX_Begin(GX_TRIANGLES, GX_VTXFMT1, 3);
-        // Top
-        GX_Position3f32((left + right) / 2.0f, top, 0.0f);
+        GX_Position3f32(x0, y0, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
 
-        // Left
-        GX_Position3f32(left, top + height, 0.0f);
+        GX_Position3f32(x1, y1, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
 
-        // Right
-        GX_Position3f32(right, top + height, 0.0f);
+        GX_Position3f32(x2, y2, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
     GX_End();
 
@@ -194,8 +197,8 @@ int UGX_setCopyClear(const u8 color[4]){
 int UGX_WPADMovement(f32* x, f32* y){
     if (WPAD_ButtonsHeld(0) & WPAD_BUTTON_RIGHT) *x += 5;
     if (WPAD_ButtonsHeld(0) & WPAD_BUTTON_LEFT) *x -= 5;
-    if (WPAD_ButtonsHeld(0) & WPAD_BUTTON_UP) *y -= 5;
-    if (WPAD_ButtonsHeld(0) & WPAD_BUTTON_DOWN) *y += 5;
+    if (WPAD_ButtonsHeld(0) & WPAD_BUTTON_UP) *y += 5;
+    if (WPAD_ButtonsHeld(0) & WPAD_BUTTON_DOWN) *y -= 5;
 
     return SUCCESS;
 }
