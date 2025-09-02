@@ -17,9 +17,9 @@ int main(int argc, char* argv[]) {
     UGX_colorF32 backgroundF32 = {.rgb = {0.0f, 0.0f, 1.0f}};
     UGX_colorU8 backgroundU8;
     UGX_convertColorF32ToColorU8(&backgroundF32, &backgroundU8);
+    UGX_setCopyClear(backgroundU8.rgba);
 
     while (1) {
-        UGX_setCopyClear(backgroundU8.rgba);
         UGX_inputScan();
 
         UGX_WPADMovement(&x, &y);
