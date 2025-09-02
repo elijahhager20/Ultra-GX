@@ -36,6 +36,21 @@ typedef union{
     u8 rgba[4];
 } UGX_colorU8;
 
+typedef union{
+    struct{
+        union{
+            struct{
+                f32 r;
+                f32 g;
+                f32 b;
+            };
+            f32 rgb[3];
+        };
+        f32 alpha;
+    };
+    f32 rgba[4];
+} UGX_colorF32;
+
 // Video variables
 GXRModeObj* rmode;
 void* xfb;
