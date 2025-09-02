@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
         if (y < 0) y = 0;
         if (y > rmode->xfbHeight - height) y = rmode->xfbHeight - height;
 
-        UGX_drawTriangle(x, x + width, y, height, color.rgba);
+        UGX_drawTriangleRGBA(x, x + width, y, height, color.rgba);
         UGX_refreshFrame();
     }
 
