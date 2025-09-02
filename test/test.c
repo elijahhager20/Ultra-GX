@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     UGX_convertColorF32ToColorU8(&backgroundF32, &backgroundU8);
 
     while (1) {
-        UGX_setCopyClear(backgroundU8.rgb);
+        UGX_setCopyClear(backgroundU8.rgba);
         UGX_inputScan();
 
         UGX_WPADMovement(&x, &y);

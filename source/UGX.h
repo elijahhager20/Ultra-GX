@@ -96,8 +96,8 @@ int UGX_refreshFrame(){
 }
 
 // Clear the screen with the color passed in
-int UGX_setCopyClear(const u8 color[3]){
-    GX_SetCopyClear((GXColor){color[0], color[1], color[2], 255}, 0x00FFFFFF);
+int UGX_setCopyClear(const u8 color[4]){
+    GX_SetCopyClear((GXColor){color[0], color[1], color[2], color[3]}, 0x00FFFFFF);
 
     return SUCCESS;
 }
