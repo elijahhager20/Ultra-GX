@@ -101,6 +101,50 @@ int UGX_drawLineRGB(f32 x1, f32 y1, f32 x2, f32 y2, const f32 color[3]){
     return SUCCESS;
 }
 
+int UGX_drawQuadRGBA(f32 x1, f32 y1, f32 x2, f32 y2, f32 x3, f32 y3, f32 x4, f32 y4, const u8 color[4]){
+    GX_Begin(GX_QUADS, GX_VTXFMT0, 4);
+        // Top-left
+        GX_Position3f32(x1, y1, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
+
+        // Top-right
+        GX_Position3f32(x2, y2, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
+
+        // Bottom-right
+        GX_Position3f32(x3, y3, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
+
+        // Bottom-left
+        GX_Position3f32(x4, y4, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
+    GX_End();
+
+    return SUCCESS;
+}
+
+int UGX_drawQuadRGB(f32 x1, f32 y1, f32 x2, f32 y2, f32 x3, f32 y3, f32 x4, f32 y4, const f32 color[3]){
+    GX_Begin(GX_QUADS, GX_VTXFMT0, 4);
+        // Top-left
+        GX_Position3f32(x1, y1, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2]);
+
+        // Top-right
+        GX_Position3f32(x2, y2, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2]);
+
+        // Bottom-right
+        GX_Position3f32(x3, y3, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2]);
+
+        // Bottom-left
+        GX_Position3f32(x4, y4, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2]);
+    GX_End();
+
+    return SUCCESS;
+}
+
 int UGX_drawSquareRGBA(f32 x, f32 y, int width, const u8 color[4]){
     GX_Begin(GX_QUADS, GX_VTXFMT0, 4);
         // Top-left
@@ -285,4 +329,5 @@ int UGX_WPAD_one(){
 // Two button
 int UGX_WPAD_two(){
     return (UGX_buttonsDown & WPAD_BUTTON_2) ? UGX_TRUE : UGX_FALSE;
+
 }
