@@ -5,7 +5,6 @@
 #include <ogcsys.h>
 #include <wiiuse/wpad.h>
 #include <malloc.h>
-#include <math.h>
 #include "globals.h"
 
 int UGX_init(){
@@ -331,3 +330,4 @@ int UGX_WPAD_two(){
     return (UGX_buttonsDown & WPAD_BUTTON_2) ? UGX_TRUE : UGX_FALSE;
 
 }
+
