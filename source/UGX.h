@@ -5,6 +5,7 @@
 #include <ogcsys.h>
 #include <wiiuse/wpad.h>
 #include <malloc.h>
+#include <math.h>
 #include "globals.h"
 
 int UGX_init(){
@@ -107,6 +108,26 @@ int UGX_WPADMovement(f32* x, f32* y){
     if (WPAD_ButtonsHeld(0) & WPAD_BUTTON_LEFT) *x -= 5;
     if (WPAD_ButtonsHeld(0) & WPAD_BUTTON_UP) *y -= 5;
     if (WPAD_ButtonsHeld(0) & WPAD_BUTTON_DOWN) *y += 5;
+
+    return SUCCESS;
+}
+
+// Converts UGX_ColorF32 to a UGX_ColorU8
+int UGX_convertColorF32ToColorU8(const UGX_colorF32* input, UGX_colorU8* output){
+    output->r = (u8)(fminf(fmaxf(input->r, 0.0f), 1.0f) * 255.0f);
+    output->g = (u8)(fminf(fmaxf(input->g, 0.0f), 1.0f) * 255.0f);
+    output->b = (u8)(fminf(fmaxf(input->b, 0.0f), 1.0f) * 255.0f);
+    output->alpha = (u8)(fminf(fmaxf(input->alpha, 0.0f), 1.0f) * 255.0f);
+
+    return SUCCESS;
+}
+
+// Converts UGX_ColorU8 to a UGX_ColorF32
+int UGX_convertColorU8ToF32(const UGX_colorU8* input, UGX_colorF32* output){
+    output->r = input->r / 255.0f;
+    output->g = input->g / 255.0f;
+    output->b = input->b / 255.0f;
+    output->alpha = input->alpha / 255.0f;
 
     return SUCCESS;
 }
