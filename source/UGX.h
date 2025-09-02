@@ -218,6 +218,36 @@ int UGX_drawTriangleRGB(f32 x0, f32 y0, f32 x1, f32 y1, f32 x2, f32 y2, const f3
     return SUCCESS;
 }
 
+int UGX_drawEquilateralTriangleRGBA(f32 x, f32 y, width const u8 color[4]){
+    GX_Begin(GX_TRIANGLES, GX_VTXFMT0, 3);
+        GX_Position3f32(x, y, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
+
+        GX_Position3f32(x + width, y, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
+
+        GX_Position3f32((x + width / 2.0f), y + width, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
+    GX_End();
+
+    return SUCCESS;
+}
+
+int UGX_drawEquilateralTriangleRGBA(f32 x, f32 y, width const f32 color[3]){
+    GX_Begin(GX_TRIANGLES, GX_VTXFMT0, 3);
+        GX_Position3f32(x, y, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2]);
+
+        GX_Position3f32(x + width, y, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2]);
+
+        GX_Position3f32((x + width / 2.0f), y + width, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2]);
+    GX_End();
+
+    return SUCCESS;
+}
+
 // Used at the end of every loop (Usually)
 int UGX_refreshFrame(){
     GX_DrawDone();
@@ -330,4 +360,3 @@ int UGX_WPAD_two(){
     return (UGX_buttonsDown & WPAD_BUTTON_2) ? UGX_TRUE : UGX_FALSE;
 
 }
-
