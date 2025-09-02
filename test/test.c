@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
         if (y < 0) y = 0;
         if (y > rmode->xfbHeight - height) y = rmode->xfbHeight - height;
 
-        UGX_drawTriangle(x, x + width, y, height, UGX_RED_F32);
+        UGX_drawTriangle(x, x + width, y, height, UGX_RED_U8);
         UGX_refreshFrame();
     }
 

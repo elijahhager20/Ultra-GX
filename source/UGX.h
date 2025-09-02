@@ -31,13 +31,15 @@ int UGX_init(){
     GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
     GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
     GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
-	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGB8, 0);
+	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
 
     // TEV setup
     GX_SetNumChans(1);
 	GX_SetNumTexGens(0);
 	GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORDNULL, GX_TEXMAP_NULL, GX_COLOR0A0);
 	GX_SetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+    GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
+    GX_SetAlphaUpdate(GX_TRUE);
 
     GX_SetCullMode(GX_CULL_NONE);
 
@@ -66,19 +68,19 @@ int UGX_drawSquare(f32 x, f32 y, int width, const f32 color[3]){
     return SUCCESS;
 }
 
-int UGX_drawTriangle(f32 left, f32 right, f32 top, int height, const f32 color[3]){
+int UGX_drawTriangle(f32 left, f32 right, f32 top, int height, const u8 color[4]){
     GX_Begin(GX_TRIANGLES, GX_VTXFMT0, 3);
         // Top
         GX_Position3f32((left + right) / 2.0f, top, 0.0f);
-        GX_Color3f32(color[0], color[1], color[2]);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
 
         // Left
         GX_Position3f32(left, top + height, 0.0f);
-        GX_Color3f32(color[0], color[1], color[2]);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
 
         // Right
         GX_Position3f32(right, top + height, 0.0f);
-        GX_Color3f32(color[0], color[1], color[2]);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
     GX_End();
 
     return SUCCESS;
