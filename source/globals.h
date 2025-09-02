@@ -15,11 +15,11 @@ const u8 UGX_GREEN_U8[4] = {0, 255, 0, 255};
 const u8 UGX_BLUE_U8[4] = {0, 0, 255, 255};
 const u8 UGX_WHITE_U8[4] = {255, 255, 255, 255};
 const u8 UGX_BLACK_U8[4] = {0, 0, 0, 255};
-const f32 UGX_RED_F32[3] = {1.0f, 0.0f, 0.0f};
-const f32 UGX_GREEN_F32[3] = {0.0f, 1.0f, 0.0f};
-const f32 UGX_BLUE_F32[3] = {0.0f, 0.0f, 1.0f};
-const f32 UGX_WHITE_F32[3] = {1.0f, 1.0f, 1.0f};
-const f32 UGX_BLACK_F32[3] = {0.0f, 0.0f, 0.0f};
+const f32 UGX_RED_F32[4] = {1.0f, 0.0f, 0.0f, 1.0f};
+const f32 UGX_GREEN_F32[4] = {0.0f, 1.0f, 0.0f, 1.0f};
+const f32 UGX_BLUE_F32[4] = {0.0f, 0.0f, 1.0f, 1.0f};
+const f32 UGX_WHITE_F32[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+const f32 UGX_BLACK_F32[4] = {0.0f, 0.0f, 0.0f, 1.0f};
 
 typedef union{
     struct{

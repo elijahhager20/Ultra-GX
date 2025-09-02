@@ -46,23 +46,23 @@ int UGX_init(){
     return SUCCESS;
 }
 
-int UGX_drawSquare(f32 x, f32 y, int width, const f32 color[3]){
+int UGX_drawSquare(f32 x, f32 y, int width, const u8 color[4]){
     GX_Begin(GX_QUADS, GX_VTXFMT0, 4);
         // Top-left
         GX_Position3f32(x, y, 0.0f);
-        GX_Color3f32(color[0], color[1], color[2]);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
         
         // Top-right
         GX_Position3f32(x + width, y, 0.0f);
-        GX_Color3f32(color[0], color[1], color[2]);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
         
         // Bottom-left
         GX_Position3f32(x + width, y + width, 0.0f);
-        GX_Color3f32(color[0], color[1], color[2]);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
         
         // Bottom-right
         GX_Position3f32(x, y + width, 0.0f);
-        GX_Color3f32(color[0], color[1], color[2]);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
     GX_End();
 
     return SUCCESS;

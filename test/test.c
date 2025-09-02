@@ -13,8 +13,9 @@ int main(int argc, char* argv[]) {
     f32 y = 100.0f;
     int width = 20;
     int height = 20;
+    UGX_colorU8 color = {.rgba = {255, 0, 0, 127}};
     
-    UGX_colorF32 backgroundF32 = {.rgb = {0.0f, 0.0f, 1.0f}};
+    UGX_colorF32 backgroundF32 = {.rgba = {0.0f, 0.0f, 1.0f, 1.0f}};
     UGX_colorU8 backgroundU8;
     UGX_convertColorF32ToColorU8(&backgroundF32, &backgroundU8);
     UGX_setCopyClear(backgroundU8.rgba);
@@ -30,7 +31,7 @@ int main(int argc, char* argv[]) {
         if (y < 0) y = 0;
         if (y > rmode->xfbHeight - height) y = rmode->xfbHeight - height;
 
-        UGX_drawTriangle(x, x + width, y, height, UGX_RED_U8);
+        UGX_drawTriangle(x, x + width, y, height, color.rgba);
         UGX_refreshFrame();
     }
 
