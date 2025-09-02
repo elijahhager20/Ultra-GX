@@ -23,11 +23,11 @@ int main(int argc, char* argv[]) {
         if (UGX_WPAD_home()) break;
         
         if (x < 0) x = 0;
-        if (x > rmode->xfbHeight - 20) x = rmode->xfbHeight - 20;
+        if (x > rmode->fbWidth - width) x = rmode->fbWidth - width;
         if (y < 0) y = 0;
-        if (y > rmode->fbWidth - 20) y = rmode->fbWidth - 20;
+        if (y > rmode->xfbHeight - height) y = rmode->xfbHeight - height;
 
-        UGX_drawSquare(x, y, width, UGX_RED_F32);
+        UGX_drawTriangle(x, x + width, y, height, UGX_RED_F32);
         UGX_refreshFrame();
     }
 

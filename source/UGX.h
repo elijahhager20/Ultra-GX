@@ -23,7 +23,7 @@ int UGX_init(){
     GX_Init(gp_fifo, DEFAULT_FIFO_SIZE);
     
     // Projection Matrix
-    guOrtho(ortho, 0, rmode->fbWidth, 0, rmode->xfbHeight, -1, 1);
+    guOrtho(ortho, 0, rmode->xfbHeight, 0, rmode->fbWidth, -1, 1);
     GX_LoadProjectionMtx(ortho, GX_ORTHOGRAPHIC);
     
     // Vertex descriptions and attribute formats
@@ -38,6 +38,8 @@ int UGX_init(){
 	GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORDNULL, GX_TEXMAP_NULL, GX_COLOR0A0);
 	GX_SetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
 
+    GX_SetCullMode(GX_CULL_NONE);
+
     return SUCCESS;
 }
 
@@ -46,12 +48,15 @@ int UGX_drawSquare(f32 x, f32 y, int width, const f32 color[3]){
         // Top-left
         GX_Position3f32(x, y, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
+        
         // Top-right
         GX_Position3f32(x + width, y, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
+        
         // Bottom-left
         GX_Position3f32(x + width, y + width, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
+        
         // Bottom-right
         GX_Position3f32(x, y + width, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
@@ -62,17 +67,19 @@ int UGX_drawSquare(f32 x, f32 y, int width, const f32 color[3]){
 
 int UGX_drawTriangle(f32 left, f32 right, f32 top, int height, const f32 color[3]){
     GX_Begin(GX_TRIANGLES, GX_VTXFMT0, 3);
-        // Left 
-        GX_Position3f32(left, top + height, 0.0f);
-        GX_Color3f32(color[0], color[1], color[2]);
-        // Right 
-        GX_Position3f32(right, top + height, 0.0f);
-        GX_Color3f32(color[0], color[1], color[2]);
-        // Top 
+        // Top
         GX_Position3f32((left + right) / 2.0f, top, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
+
+        // Left
+        GX_Position3f32(left, top + height, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
+
+        // Right
+        GX_Position3f32(right, top + height, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
     GX_End();
-    
+
     return SUCCESS;
 }
 
