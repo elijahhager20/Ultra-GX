@@ -126,19 +126,19 @@ int UGX_drawQuadRGB(f32 x1, f32 y1, f32 x2, f32 y2, f32 x3, f32 y3, f32 x4, f32 
     GX_Begin(GX_QUADS, GX_VTXFMT1, 4);
         // Top-left
         GX_Position3f32(x1, y1, 0.0f);
-        GX_Color4u8(color[0], color[1], color[2]);
+        GX_Color3f32(color[0], color[1], color[2]);
 
         // Top-right
         GX_Position3f32(x2, y2, 0.0f);
-        GX_Color4u8(color[0], color[1], color[2]);
+        GX_Color3f32(color[0], color[1], color[2]);
 
         // Bottom-right
         GX_Position3f32(x3, y3, 0.0f);
-        GX_Color4u8(color[0], color[1], color[2]);
+        GX_Color3f32(color[0], color[1], color[2]);
 
         // Bottom-left
         GX_Position3f32(x4, y4, 0.0f);
-        GX_Color4u8(color[0], color[1], color[2]);
+        GX_Color3f32(color[0], color[1], color[2]);
     GX_End();
 
     return SUCCESS;
@@ -236,13 +236,13 @@ int UGX_drawEquilateralTriangleRGBA(f32 x, f32 y, width const u8 color[4]){
 int UGX_drawEquilateralTriangleRGB(f32 x, f32 y, width const f32 color[3]){
     GX_Begin(GX_TRIANGLES, GX_VTXFMT1, 3);
         GX_Position3f32(x, y, 0.0f);
-        GX_Color4u8(color[0], color[1], color[2]);
+        GX_Color3f32(color[0], color[1], color[2]);
 
         GX_Position3f32(x + width, y, 0.0f);
-        GX_Color4u8(color[0], color[1], color[2]);
+        GX_Color3f32(color[0], color[1], color[2]);
 
         GX_Position3f32((x + width / 2.0f), y + width, 0.0f);
-        GX_Color4u8(color[0], color[1], color[2]);
+        GX_Color3f32(color[0], color[1], color[2]);
     GX_End();
 
     return SUCCESS;
