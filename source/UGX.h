@@ -218,7 +218,7 @@ int UGX_drawTriangleRGB(f32 x0, f32 y0, f32 x1, f32 y1, f32 x2, f32 y2, const f3
     return SUCCESS;
 }
 
-int UGX_drawEquilateralTriangleRGBA(f32 x, f32 y, width const u8 color[4]){
+int UGX_drawEquilateralTriangleRGBA(f32 x, f32 y, int width, const u8 color[4]){
     GX_Begin(GX_TRIANGLES, GX_VTXFMT0, 3);
         GX_Position3f32(x, y, 0.0f);
         GX_Color4u8(color[0], color[1], color[2], color[3]);
@@ -233,7 +233,7 @@ int UGX_drawEquilateralTriangleRGBA(f32 x, f32 y, width const u8 color[4]){
     return SUCCESS;
 }
 
-int UGX_drawEquilateralTriangleRGB(f32 x, f32 y, width const f32 color[3]){
+int UGX_drawEquilateralTriangleRGB(f32 x, f32 y, int width, const f32 color[3]){
     GX_Begin(GX_TRIANGLES, GX_VTXFMT1, 3);
         GX_Position3f32(x, y, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
