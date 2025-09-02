@@ -5,6 +5,7 @@
 #include <ogcsys.h>
 #include <wiiuse/wpad.h>
 #include <malloc.h>
+#include <math.h>
 #include "globals.h"
 
 int UGX_init(){
@@ -190,13 +191,13 @@ int UGX_drawSquareRGB(f32 x, f32 y, int width, const f32 color[3]){
 
 int UGX_drawTriangleRGBA(f32 x1, f32 y1, f32 x2, f32 y2, f32 x3, f32 y3, const u8 color[4]){
     GX_Begin(GX_TRIANGLES, GX_VTXFMT0, 3);
-        GX_Position3f32(x0, y0, 0.0f);
-        GX_Color4u8(color[0], color[1], color[2], color[3]);
-
         GX_Position3f32(x1, y1, 0.0f);
         GX_Color4u8(color[0], color[1], color[2], color[3]);
 
         GX_Position3f32(x2, y2, 0.0f);
+        GX_Color4u8(color[0], color[1], color[2], color[3]);
+
+        GX_Position3f32(x3, y3, 0.0f);
         GX_Color4u8(color[0], color[1], color[2], color[3]);
     GX_End();
 
@@ -205,13 +206,13 @@ int UGX_drawTriangleRGBA(f32 x1, f32 y1, f32 x2, f32 y2, f32 x3, f32 y3, const u
 
 int UGX_drawTriangleRGB(f32 x1, f32 y1, f32 x2, f32 y2, f32 x3, f32 y3, const f32 color[3]){
     GX_Begin(GX_TRIANGLES, GX_VTXFMT1, 3);
-        GX_Position3f32(x0, y0, 0.0f);
-        GX_Color3f32(color[0], color[1], color[2]);
-
         GX_Position3f32(x1, y1, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
 
         GX_Position3f32(x2, y2, 0.0f);
+        GX_Color3f32(color[0], color[1], color[2]);
+
+        GX_Position3f32(x3, y3, 0.0f);
         GX_Color3f32(color[0], color[1], color[2]);
     GX_End();
 
