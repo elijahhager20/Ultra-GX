@@ -2,6 +2,8 @@
 #pragma once
 
 #define DEFAULT_FIFO_SIZE (256 * 1024)
+#define UGX_VIDEO_WIDTH rmode->fbWidth
+#define UGX_VIDEO_HEIGHT rmode->xfbHeight
 
 // Return codes, also a boolean wrapper for 0 and 1
 #define SUCCESS 0

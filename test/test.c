@@ -27,9 +27,9 @@ int main(int argc, char* argv[]) {
         if (UGX_WPAD_home()) break;
         
         if (x < 0) x = 0;
-        if (x > rmode->fbWidth - width) x = rmode->fbWidth - width;
+        if (x > UGX_VIDEO_WIDTH - width) x = UGX_VIDEO_WIDTH - width;
         if (y < 0) y = 0;
-        if (y > rmode->xfbHeight - height) y = rmode->xfbHeight - height;
+        if (y > UGX_VIDEO_HEIGHT - height) y = UGX_VIDEO_HEIGHT - height;
 
         UGX_drawTriangleRGBA(x, x + width, y, height, color.rgba);
         UGX_refreshFrame();
