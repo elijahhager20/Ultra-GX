@@ -54,7 +54,7 @@ int UGX_drawInit(void){
 }
 
 int UGX_consoleInit(void){
-    CON_InitEx(rmode, 10, 10, rmode->fbWidth - 20, rmode->xfbHeight - 20);
+    CON_InitEx(rmode, 20, 20, rmode->fbWidth - 40, rmode->xfbHeight - 40);
 
     return SUCCESS;
 }
