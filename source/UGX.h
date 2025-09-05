@@ -8,7 +8,7 @@
 #include <math.h>
 #include "globals.h"
 
-int UGX_init(){
+int UGX_init(void){
     // Basic initilization, pretty readable on its own
     VIDEO_Init();
     WPAD_Init();
@@ -46,14 +46,14 @@ int UGX_init(){
     return SUCCESS;
 }
 
-int UGX_drawInit(){
+int UGX_drawInit(void){
     guOrtho(ortho, rmode->xfbHeight, 0, 0, rmode->fbWidth, -1, 1);
     GX_LoadProjectionMtx(ortho, GX_ORTHOGRAPHIC);
 
     return SUCCESS;
 }
 
-int UGX_consoleInit(){
+int UGX_consoleInit(void){
     CON_InitEx(rmode, 10, 10, rmode->fbWidth - 20, rmode->xfbHeight - 20);
 
     return SUCCESS;
@@ -250,7 +250,7 @@ int UGX_drawEquilateralTriangleRGB(f32 x, f32 y, int width, const f32 color[3]){
 }
 
 // Used at the end of every loop (Usually)
-int UGX_refreshFrame(){
+int UGX_refreshFrame(void){
     GX_DrawDone();
     GX_CopyDisp(xfb, GX_TRUE);
     VIDEO_SetNextFramebuffer(xfb);
@@ -299,7 +299,7 @@ int UGX_convertColorU8ToF32(const UGX_colorU8* input, UGX_colorF32* output){
 
 // Input Checking (Raw input, no specialty things like UGX_WPADMovement())
 // Literally just a wrapper for WiiUse, lmao
-int UGX_inputScan(){
+int UGX_inputScan(void){
     WPAD_ScanPads();
     UGX_buttonsHeld = WPAD_ButtonsHeld(0);
     UGX_buttonsDown = WPAD_ButtonsDown(0);
@@ -307,57 +307,57 @@ int UGX_inputScan(){
 }
 
 // Home button
-int UGX_WPAD_home(){
+int UGX_WPAD_home(void){
     return (UGX_buttonsDown & WPAD_BUTTON_HOME) ? UGX_TRUE : UGX_FALSE;
 }
 
 // Right button
-int UGX_WPAD_right(){
+int UGX_WPAD_right(void){
     return (UGX_buttonsDown & WPAD_BUTTON_RIGHT) ? UGX_TRUE : UGX_FALSE;
 }
 
 // Left button
-int UGX_WPAD_left(){
+int UGX_WPAD_left(void){
     return (UGX_buttonsDown & WPAD_BUTTON_LEFT) ? UGX_TRUE : UGX_FALSE;
 }
 
 // Up button
-int UGX_WPAD_up(){
+int UGX_WPAD_up(void){
     return (UGX_buttonsDown & WPAD_BUTTON_UP) ? UGX_TRUE : UGX_FALSE;
 }
 
 // Down button
-int UGX_WPAD_down(){
+int UGX_WPAD_down(void){
     return (UGX_buttonsDown & WPAD_BUTTON_DOWN) ? UGX_TRUE : UGX_FALSE;
 }
 
 // B button
-int UGX_WPAD_b(){
+int UGX_WPAD_b(void){
     return (UGX_buttonsDown & WPAD_BUTTON_B) ? UGX_TRUE : UGX_FALSE;
 }
 
 // A button
-int UGX_WPAD_a(){
+int UGX_WPAD_a(void){
     return (UGX_buttonsDown & WPAD_BUTTON_A) ? UGX_TRUE : UGX_FALSE;
 }
 
 // Minus button
-int UGX_WPAD_minus(){
+int UGX_WPAD_minus(void){
     return (UGX_buttonsDown & WPAD_BUTTON_MINUS) ? UGX_TRUE : UGX_FALSE;
 }
 
 // Plus button
-int UGX_WPAD_plus(){
+int UGX_WPAD_plus(void){
     return (UGX_buttonsDown & WPAD_BUTTON_PLUS) ? UGX_TRUE : UGX_FALSE;
 }
 
 // One button
-int UGX_WPAD_one(){
+int UGX_WPAD_one(void){
     return (UGX_buttonsDown & WPAD_BUTTON_1) ? UGX_TRUE : UGX_FALSE;
 }
 
 // Two button
-int UGX_WPAD_two(){
+int UGX_WPAD_two(void){
     return (UGX_buttonsDown & WPAD_BUTTON_2) ? UGX_TRUE : UGX_FALSE;
 
 }
