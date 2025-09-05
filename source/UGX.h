@@ -54,7 +54,9 @@ int UGX_drawInit(void){
 }
 
 int UGX_consoleInit(void){
-    CON_InitEx(rmode, 20, 20, rmode->fbWidth - 40, rmode->xfbHeight - 40);
+    VIDEO_ClearFrameBuffer(rmode, xfb, COLOR_BLACK);
+    CON_InitEx(rmode, 10, 10, rmode->fbWidth - 8, rmode->xfbHeight - 6);
+    VIDEO_ClearFrameBuffer(rmode, xfb, COLOR_BLACK);
 
     return SUCCESS;
 }
