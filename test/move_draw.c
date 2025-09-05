@@ -1,3 +1,4 @@
+/*
 #include <gccore.h>
 #include <stdlib.h>
 #include <ogcsys.h>
@@ -35,3 +36,4 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+*/
