@@ -59,6 +59,6 @@ void* xfb;
 void* gp_fifo;
 Mtx44 ortho;
 
-// Wrappers for WiiUse, assigned in UGX_inputScan(), see in UGX.h
+// Wrappers for WiiUse, assigned in UGX_inputScan() (see in UGX.h)
 u32 UGX_buttonsHeld;
 u32 UGX_buttonsDown;
