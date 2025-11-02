@@ -1,4 +1,3 @@
-source/test.c
 .vscode/
 Makefile
 bin/
