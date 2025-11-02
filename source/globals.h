@@ -62,3 +62,6 @@ Mtx44 ortho;
 // Wrappers for WiiUse, assigned in UGX_inputScan() (see in UGX.h)
 u32 UGX_buttonsHeld;
 u32 UGX_buttonsDown;
+
+// Other variables
+int renderStatus; // 0 is draw, 1 is console

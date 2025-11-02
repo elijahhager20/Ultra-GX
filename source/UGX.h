@@ -50,14 +50,16 @@ int UGX_drawInit(void){
     guOrtho(ortho, rmode->xfbHeight, 0, 0, rmode->fbWidth, -1, 1);
     GX_LoadProjectionMtx(ortho, GX_ORTHOGRAPHIC);
 
+    renderStatus = 0;
     return SUCCESS;
 }
 
 int UGX_consoleInit(void){
     VIDEO_ClearFrameBuffer(rmode, xfb, COLOR_BLACK);
-    CON_InitEx(rmode, 10, 10, rmode->fbWidth - 8, rmode->xfbHeight - 6);
+    CON_InitEx(rmode, 0, 0, rmode->fbWidth, rmode->xfbHeight);
     VIDEO_ClearFrameBuffer(rmode, xfb, COLOR_BLACK);
 
+    renderStatus = 1;
     return SUCCESS;
 }
 
